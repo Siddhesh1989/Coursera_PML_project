@@ -4,8 +4,7 @@ author: "Siddhesh Amarnath"
 date: "20 July 2015"
 output: html_document
 ---
-
-Insert intro here
+The objective of this project is to fit a model to the given data set that can then be used to predict the classe variable i.e. determine if a person performed an exercise correctly or not.
 
 ```{r}
 library(caret)
@@ -34,6 +33,7 @@ p = 0.2, list = FALSE)
 trainset1 <- filteredPMLtraining[trainIndex20,] #has 20% of the whole set
 tempset1 <- filteredPMLtraining[-trainIndex20,] #has the remaining 80% of data
 #now training the data set to predict the classe using random forests, which is a model building algorithm well suited for classification problems
+#I am using k fold cross validation with k=3 
 model1 <- train(classe~.,data=trainset1,method="rf", trControl = trainControl(method="cv",number =3,allowParallel = TRUE))
 model1
 model1$finalModel
